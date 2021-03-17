@@ -1,6 +1,6 @@
 {
   "name": "shadowadmin",
-  "version": "0.0.1",
+  "version": "0.0.1-patch1",
   "description": "Admin panel for my bots",
   "main": "index.js",
   "scripts": {

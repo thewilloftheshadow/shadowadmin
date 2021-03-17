@@ -5,10 +5,6 @@ const fs = require("fs")
 
 let saResources = {}
 
-const events = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
-
-module.exports = 
-
 module.exports.init = (client, options = defaults) => {
     if(!client.readyTimestamp) throw new Error("ShadowAdmin must be initialized inside the ready event of the client!")
     

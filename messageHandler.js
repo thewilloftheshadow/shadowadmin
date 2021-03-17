@@ -2,10 +2,15 @@ const { Client } = require("discord.js")
 
 module.exports = (saResources) => {
   saResources.client.on("message", (message) => {
-		if(message.author && !saResources.options.owners.includes(message.author.id)) return saResources.logger(
-			`${message.author.tag} is not an authorized ShadowAdmin user - ignoring`,
-			"debug"
-		)
+    if (message.author.bot) return
+    if (
+      message.author &&
+      !saResources.options.owners.includes(message.author.id)
+    )
+      return saResources.logger(
+        `${message.author.tag} is not an authorized ShadowAdmin user - ignoring`,
+        "debug"
+      )
 
     const args = message.content
       .slice(saResources.options.prefix.length)
@@ -18,10 +23,10 @@ module.exports = (saResources) => {
         "debug"
       )
 
-      if(!args[0]) require("./panel.js")(saResources)
+    //if(!args[0]) require("./panel.js")(saResources)
 
-      if(saResources.exported[command]) saResources.exported[command](saResources)
-      
+    if (saResources.exported[command])
+      saResources.exported[command](saResources)
   })
 
   saResources.logger("[ShadowAdmin] Commands module initialized")

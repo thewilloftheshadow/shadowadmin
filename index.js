@@ -2,8 +2,16 @@ const package = require("./package.json")
 const Discord = require("discord.js")
 const defaults = require("./defaults.js")
 const fs = require("fs")
+const logger = require("./logger.js")
 
-let saResources = {}
+module.exports.saResources = {logger}
+
+const modules = fs.readdirSync("./modules").filter(file => file.endsWith(".js"));
+for (const file of modules) {
+    module.exports[module] = require(`./modules/${file}`)
+}
+
+const messageHandler = require("./messageHandler.js")
 
 module.exports.init = (client, options = defaults) => {
     if(!client.readyTimestamp) throw new Error("ShadowAdmin must be initialized inside the ready event of the client!")
@@ -13,12 +21,5 @@ module.exports.init = (client, options = defaults) => {
     }
     saResources = {client, options, logger, exported: module.exports}
     logger(`ShadowAdmin v${package.version} initialized.`)
-    if(options.messageHandler) require(`./messageHandler.js`)(saResources)
-}
-
-const logger = (message, type = "info") => {
-    let toLog = `[ShadowAdmin] ${message}`
-    if(type == "error") return console.error(toLog) 
-    if(type == "debug" && saResources.options.debug) return console.log(toLog)
-    return console.log(toLog)
+    if(options.messageHandler) messageHandler(saResources)
 }

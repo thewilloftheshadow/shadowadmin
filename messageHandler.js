@@ -2,7 +2,7 @@ const { Client } = require("discord.js")
 
 module.exports = (saResources) => {
   saResources.client.on("message", (message) => {
-    if (message.author.bot) return
+    if (message.author.bot || !message.content.startsWith(saResources.options.prefix)) return
     if (
       message.author &&
       !saResources.options.owners.includes(message.author.id)
@@ -29,5 +29,5 @@ module.exports = (saResources) => {
       saResources.exported[command](saResources)
   })
 
-  saResources.logger("[ShadowAdmin] Commands module initialized")
+  saResources.logger("Message handler initialized", "debug")
 }

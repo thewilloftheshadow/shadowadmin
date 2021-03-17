@@ -11,7 +11,6 @@ module.exports.init = (client, options = defaults) => {
     for(let x in defaults){
         if(!options[x]) options[x] = defaults[x]
     }
-
     saResources = {client, options, logger, exported: module.exports}
     logger(`ShadowAdmin v${package.version} initialized.`)
     if(options.messageHandler) require(`./messageHandler.js`)(saResources)
@@ -21,4 +20,5 @@ const logger = (message, type = "info") => {
     let toLog = `[ShadowAdmin] ${message}`
     if(type == "error") console.error(toLog) 
     if(type == "debug" && saResources.options.debug) console.log(toLog)
+    console.log(message)
 }

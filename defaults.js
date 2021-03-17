@@ -3,5 +3,6 @@ module.exports = {
     latestCommit: true,
     restart: true,
     messageHandler: true,
-    owners: ["439223656200273932"]
+    owners: ["439223656200273932"],
+    debug: false
 }

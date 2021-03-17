@@ -15,9 +15,6 @@ module.exports.init = (client, options = defaults) => {
     saResources = {client, options, logger, exported: module.exports}
     logger(`ShadowAdmin v${package.version} initialized.`)
     if(options.messageHandler) require(`./messageHandler.js`)(saResources)
-    for (const file of events) {
-        module.exports[file] = require(`./events/${file}`)(saResources)
-    }
 }
 
 const logger = (message, type = "info") => {

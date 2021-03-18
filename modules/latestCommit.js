@@ -1,5 +1,5 @@
 const { exec } = require("child_process")
-const logger = require("../logger.js")
+const {logger} = require("../r.js")
 module.exports = () => {
   exec("git rev-parse --short HEAD", (err, stdout, stderr) => {
     if (err) {

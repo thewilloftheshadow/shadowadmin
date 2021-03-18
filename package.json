@@ -1,6 +1,6 @@
 {
   "name": "shadowadmin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Admin panel for my bots",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/thewilloftheshadow/shadowadmin#readme",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "discord.js": "^12.5.1",
+    "node-cmd": "^4.0.0"
   },
   "devDependencies": {
     "prettier": "^2.2.1"
